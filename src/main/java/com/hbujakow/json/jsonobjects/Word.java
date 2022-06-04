@@ -1,4 +1,4 @@
-package com.hbujakow.jsonobjects;
+package com.hbujakow.json.jsonobjects;
 
 public class Word {
     String word;
