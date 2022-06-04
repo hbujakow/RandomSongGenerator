@@ -23,13 +23,14 @@ public class Main {
     public static void main(String[] args) {
         createRandomWords();
 
-        System.out.println("CREATED RANDOM WORDS: " + wordsSet);
-
-        System.out.println("Words: " + wordsSet);
+        System.out.println("Random words: " + wordsSet);
 
         generateSongs();
 
         UserOutput musicOutput = new UserOutputImpl(wordsSet, songsList);
+
+        System.out.println("\n===========================================\n");
+
         musicOutput.showInfo();
     }
 
