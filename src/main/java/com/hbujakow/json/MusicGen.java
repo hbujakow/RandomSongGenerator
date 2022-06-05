@@ -2,7 +2,6 @@ package com.hbujakow.json;
 
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.hbujakow.conn.Connectable;
 import com.hbujakow.exceptions.NoDataException;
@@ -33,16 +32,22 @@ public class MusicGen implements JsonParser<LinkedList<Music>> {
             Gson gson = new Gson();
             JsonObject jsonObject = null;
 
-            try {
-                jsonObject = gson.fromJson(conn.getJsonString(new URL(MUSICURL + word)), JsonObject.class);
-            } catch (IOException e) {
-                e.printStackTrace();
+            boolean isShown = false;
+            while (jsonObject == null) {
+                try {
+                    jsonObject = gson.fromJson(conn.getJsonString(new URL(MUSICURL + word)), JsonObject.class);
+                } catch (IOException e) {
+                    if (!isShown) {
+                        System.out.println("Server overloaded, waiting...");
+                        isShown = true;
+                    }
+                }
             }
             assert jsonObject != null;
             Music music = new Music();
 
             //CHECK COUNT > 0
-            if (jsonObject.get("count").getAsInt() == 0){
+            if (jsonObject.get("count").getAsInt() == 0) {
                 try {
                     throw new NoDataException("No recording found!");
                 } catch (NoDataException e) {

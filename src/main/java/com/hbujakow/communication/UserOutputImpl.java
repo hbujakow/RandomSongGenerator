@@ -25,10 +25,10 @@ public class UserOutputImpl implements UserOutput {
             } else {
                 var musicInfo = "Artist: " + songsList.get(i).getArtist() + ", " +
                         "Album: " + songsList.get(i).getAlbum() + ", " +
-                        "Title: " + songsList.get(i++).getTitle();
+                        "Title: " + songsList.get(i).getTitle();
                 wordMusicMap.put(word, musicInfo);
             }
-
+            i++;
         }
 
         wordMusicMap.entrySet()

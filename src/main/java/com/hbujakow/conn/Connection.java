@@ -5,7 +5,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
-public class Connection implements Connectable{
+public class Connection implements Connectable {
 
     @Override
     public String getJsonString(URL url) throws IOException {
@@ -15,7 +15,7 @@ public class Connection implements Connectable{
 
         int responseCode = conn.getResponseCode();
 
-        if (responseCode != 200) {
+        if (responseCode != 200 && responseCode != 503) {
             throw new RuntimeException("HTTP Response: " + responseCode);
         }
 
